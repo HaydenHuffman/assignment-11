@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <h2>Transaction ID: [[${transaction.id}]] ([[${transaction.type  == 'C' ? 'Credit' : 'Debit'}]])</h2>
+    <p>
+    Date: [[${transaction.date}]]<br/>
+    Amount: [[${transaction.type == 'D' ? '-' : ''}]] [[${transaction.amount}]]<br/>
+    Description: [[${transaction.description}]]<br/>
+    <a href="/transactions">back</a>
+    </p>
+</body>
+</html>
