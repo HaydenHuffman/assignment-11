@@ -1,5 +1,6 @@
 package com.codercampus.Assignment11.web;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,13 @@ public class TransactionController {
 	@GetMapping("/transactions")
 	public String getTransactions(ModelMap model) {
 		List<Transaction> transactions = transactionService.findAll();
+		Collections.sort(transactions);
 		model.put("transactions", transactions);
         return "transactions";
     }
 
 	@GetMapping("transactions/{transactionId}")
-	public String getTransaction(@PathVariable Integer transactionId, ModelMap model) {
+	public String getTransaction(@PathVariable Long transactionId, ModelMap model) {
 		Transaction transaction = transactionService.findById(transactionId);
         model.put("transaction", transaction);
 		System.out.println(transaction.getId());

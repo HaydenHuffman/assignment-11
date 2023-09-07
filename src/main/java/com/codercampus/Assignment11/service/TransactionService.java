@@ -1,7 +1,7 @@
 package com.codercampus.Assignment11.service;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +18,16 @@ public class TransactionService {
 
 	public List<Transaction> findAll() {
 		List<Transaction> transactions = transactionRepo.findAll();
-		Collections.sort(transactions);
 		return transactions;
+	
 	}
 
-	public Transaction findById(Integer transactionId) {
-		return transactionRepo.findById(transactionId);
+	public Transaction findById(Long transactionId) {
+		List<Transaction> transactions = transactionRepo.findAll();
+		List<Transaction> match = transactions.stream()
+									.filter(t -> t.getId().equals(transactionId))
+									.collect(Collectors.toList());
+		return match.get(0);
 		
 	}
 
